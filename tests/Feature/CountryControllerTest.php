@@ -1,10 +1,14 @@
 <?php
 
+namespace Tests\Feature;
 
 use Tests\TestCase;
+use Illuminate\Foundation\Testing\WithoutMiddleware;
 
 class CountryControllerTest extends TestCase
 {
+    use WithoutMiddleware;
+
     /** @test */
     public function it_returns_country_data()
     {
@@ -12,7 +16,12 @@ class CountryControllerTest extends TestCase
 
         $response->assertStatus(200);
         $response->assertJsonStructure([
-            // Add the expected JSON structure here
+            '*' => [ 
+                'name' => [
+                    'common',
+                    'official',
+                ],
+            ],
         ]);
     }
 }
